@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Session Storage Example</title>
+  <style>
+    body { font-family: Arial; text-align: center; padding: 20px; }
+    input, button { padding: 8px; margin: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>Session Storage Example</h2>
+
+  <input type="text" id="name" placeholder="Enter your name">
+  <button id="saveBtn">Save Name</button>
+  <button id="showBtn">Show Name</button>
+  <button id="clearBtn">Clear Session</button>
+
+  <p id="output"></p>
+
+  <script>
+    const nameInput = document.getElementById("name");
+    const output = document.getElementById("output");
+
+    // Save name in sessionStorage
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      let name = nameInput.value;
+      sessionStorage.setItem("username", name);
+      output.textContent = "Name saved in session!";
+    });
+
+    // Show stored name
+    document.getElementById("showBtn").addEventListener("click", () => {
+      let storedName = sessionStorage.getItem("username");
+      if (storedName) {
+        output.textContent = `Welcome back, ${storedName}!`;
+      } else {
+        output.textContent = "No name found in this session.";
+      }
+    });
+
+    // Clear session
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      sessionStorage.clear();
+      output.textContent = "Session cleared!";
+    });
+  </script>
+
+</body>
+</html>

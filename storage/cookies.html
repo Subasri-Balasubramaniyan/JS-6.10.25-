@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cookies Example</title>
+</head>
+<body>
+  <h2>Cookie Example</h2>
+
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+  <button onclick="deleteCookie()">Delete Cookie</button>
+
+  <p id="output"></p>
+
+  <script>
+    // Function to set a cookie
+    function setCookie() {
+      document.cookie = "username=Subasri; expires=Fri, 31 Dec 2025 12:00:00 UTC; path=/";
+      document.getElementById("output").innerText = "Cookie set!";
+    }
+
+    // Function to get a cookie by name
+    function getCookie() {
+      let name = "username=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let cookies = decodedCookie.split(';');
+      
+      for (let i = 0; i < cookies.length; i++) {
+        let c = cookies[i].trim();
+        if (c.indexOf(name) === 0) {
+          document.getElementById("output").innerText = "Cookie Value: " + c.substring(name.length);
+          return;
+        }
+      }
+      document.getElementById("output").innerText = "Cookie not found!";
+    }
+
+    // Function to delete a cookie
+    function deleteCookie() {
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+      document.getElementById("output").innerText = "Cookie deleted!";
+    }
+  </script>
+</body>
+</html>
